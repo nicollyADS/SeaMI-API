@@ -25,7 +25,7 @@ public class AmostraAgua {
     private Long id;
 
     @Column(name="dtColeta", nullable = false)
-    private LocalDate dataColeta;
+    private LocalDateTime dataColeta;
 
     @Column(name="dsPH", length = 15, nullable = false)
     private String ph;

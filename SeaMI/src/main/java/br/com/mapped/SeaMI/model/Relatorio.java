@@ -4,7 +4,11 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -27,6 +31,7 @@ public class Relatorio {
     @Column(name="dsRelatorio", length = 200, nullable = false)
     private String descricao;
 
+    @CreatedDate
     @Column(name="dtCriacao", nullable = false)
-    private String dataCriacao;
+    private LocalDateTime dataCriacao;
 }

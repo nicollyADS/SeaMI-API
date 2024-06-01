@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -29,13 +30,13 @@ public class Filtro {
     private String descricao;
 
     @Column(name="dtInstalacao", nullable = false)
-    private LocalDate dataInstalacao;
+    private LocalDateTime dataInstalacao;
 
     @Column(name="stFiltro", length = 15, nullable = false)
     @Enumerated(EnumType.STRING)
     private Status status;
 
     @Column(name="dtManutencao")
-    private LocalDate dataManutencao;
+    private LocalDateTime dataManutencao;
 
 }
