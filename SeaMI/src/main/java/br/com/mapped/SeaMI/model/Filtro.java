@@ -39,4 +39,14 @@ public class Filtro {
     @Column(name="dtManutencao")
     private LocalDateTime dataManutencao;
 
+
+    //relacionamentos
+    //filtro amostraAgua - muitos pra um
+    @ManyToOne
+    @JoinColumn(name="cdAmostra", nullable = false)
+    private AmostraAgua amostraAgua;
+
+    //filtro localizacaoFiltro - UM pra um
+    @OneToOne(mappedBy = "filtro", cascade = CascadeType.ALL)
+    private LocalizacaoFiltro localizacaoFiltro;
 }

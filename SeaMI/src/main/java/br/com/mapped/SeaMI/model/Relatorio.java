@@ -9,6 +9,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -34,4 +35,15 @@ public class Relatorio {
     @CreatedDate
     @Column(name="dtCriacao", nullable = false)
     private LocalDateTime dataCriacao;
+
+    //relacionamentos
+    // relatorio relatorioAmostra - um pra muitos
+    @OneToMany(mappedBy = "relatorio")
+    private List<RelatorioAmostra> relatorioAmostras;
+
+    //relatorio usuario - muitos pra um
+    @ManyToOne
+    @JoinColumn(name="cdUsuario", nullable = false)
+    private Usuario usuario;
+
 }

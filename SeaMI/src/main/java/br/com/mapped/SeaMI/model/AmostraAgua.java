@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -47,5 +48,20 @@ public class AmostraAgua {
 
     @Column(name="dsTurbidez", length = 15, nullable = false)
     private String turbidez;
+
+
+    //relacionamentos
+    //amostraAgua usuario - muitos pra um
+    @ManyToOne
+    @JoinColumn(name="cdUsuario", nullable = false)
+    private Usuario usuario;
+
+    //amostraAgua filtro - um pra muitos
+    @OneToMany(mappedBy = "amostraAgua")
+    private List<Filtro> filtros;
+
+    //amostraAgua relatorioAmostra - um pra muitos
+    @OneToMany(mappedBy = "amostraAgua")
+    private List<RelatorioAmostra> relatorioAmostras;
 
 }

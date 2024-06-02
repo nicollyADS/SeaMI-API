@@ -23,6 +23,17 @@ public class RelatorioAmostra {
     @Column(name="dsRelatorioAmostra", length = 200, nullable = false)
     private String descricao;
 
+    //relacionamentos
+    //relatorioAmostra amostraAgua - muitos pra um
+    @ManyToOne
+    @JoinColumn(name="cdAmostra", nullable = false)
+    private AmostraAgua amostraAgua;
+
+    //relatorioAmostra relatorio - muitos pra um
+    @ManyToOne
+    @JoinColumn(name="cdRelatorio", nullable = false)
+    private Relatorio relatorio;
+
 }
 
 

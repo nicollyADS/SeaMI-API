@@ -9,6 +9,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -46,5 +47,22 @@ public class Usuario {
     @CreatedDate
     @Column(name="dtCadastro", nullable = false)
     private LocalDateTime dataCadastro;
+
+    @Column(name="stUsuario", length = 15, nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    //relacionamentos
+    // usuario login - UM pra um
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private Login login;
+
+    //usuario amostraAgua - um pra muitos
+    @OneToMany(mappedBy = "usuario")
+    private List<AmostraAgua> amostraAguas;
+
+    //usuario relatorio - um pra muitos
+    @OneToMany(mappedBy = "usuario")
+    private List<Relatorio> relatorios;
 
 }

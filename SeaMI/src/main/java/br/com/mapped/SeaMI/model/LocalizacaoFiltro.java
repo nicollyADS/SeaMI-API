@@ -32,4 +32,11 @@ public class LocalizacaoFiltro {
 
     @Column(name="dsProfundidade", length = 20, nullable = false)
     private String profundidade;
+
+    //relacionamentos
+    //localizacaoFiltro filtro - um pra UM
+    @OneToOne
+    @JoinColumn(name = "cdFiltro", nullable = false)
+    private Filtro filtro;
+
 }
