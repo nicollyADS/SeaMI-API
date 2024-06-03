@@ -67,7 +67,7 @@ public class AmostraAgua {
     private List<RelatorioAmostra> relatorioAmostras;
 
 
-    public AmostraAgua(CadastroAmostraAguaDto amostraDto) {
+    public AmostraAgua(CadastroAmostraAguaDto amostraDto, Usuario usuario) {
         dataColeta = amostraDto.dataColeta();
         ph = amostraDto.ph();
         poluentesQuimicos = amostraDto.poluentesQuimicos();
@@ -77,7 +77,8 @@ public class AmostraAgua {
         temperatura = amostraDto.temperatura();
         turbidez = amostraDto.turbidez();
 
-
+        //usuario
+        this.usuario = usuario;
     }
 
     public void atualizarInformacoesAmostraAgua(AtualizacaoAmostraAguaDto dto) {
