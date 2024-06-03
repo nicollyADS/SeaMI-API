@@ -3,7 +3,7 @@ import br.com.mapped.SeaMI.model.RelatorioAmostra;
 
 public record DetalhesRelatorioAmostraDto(Long id, String descricaoAmostra, Long idAmostra, Long idRelatorio) {
 
-        DetalhesRelatorioAmostraDto(RelatorioAmostra relatorioAmostra) {
+        public DetalhesRelatorioAmostraDto(RelatorioAmostra relatorioAmostra) {
                 this(relatorioAmostra.getId(), relatorioAmostra.getDescricaoAmostra(),relatorioAmostra.getAmostraAgua().getId(),relatorioAmostra.getRelatorio().getId()
 
                 );

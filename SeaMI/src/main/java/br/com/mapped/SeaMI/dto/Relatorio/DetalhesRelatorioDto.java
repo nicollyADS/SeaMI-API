@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 public record DetalhesRelatorioDto(Long id, String nome, String descricao, LocalDateTime dataCriacao) {
 
-    DetalhesRelatorioDto(Relatorio relatorio) {
+    public DetalhesRelatorioDto(Relatorio relatorio) {
         this(relatorio.getId(), relatorio.getNome(), relatorio.getDescricao(), relatorio.getDataCriacao() );
     }
 
