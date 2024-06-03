@@ -1,5 +1,6 @@
 package br.com.mapped.SeaMI.model;
 
+import br.com.mapped.SeaMI.dto.Filtro.CadastroFiltroDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,5 +39,12 @@ public class LocalizacaoFiltro {
     @OneToOne
     @JoinColumn(name = "cdFiltro", nullable = false)
     private Filtro filtro;
+
+    public LocalizacaoFiltro(CadastroFiltroDto localizacaoDto) {
+        nomeRio = localizacaoDto.nomeRio();
+        latitude = localizacaoDto.latitude();
+        longitude = localizacaoDto.longitude();
+        profundidade = localizacaoDto.profundidade();
+    }
 
 }

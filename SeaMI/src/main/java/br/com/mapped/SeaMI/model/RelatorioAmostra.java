@@ -21,7 +21,7 @@ public class RelatorioAmostra {
     private Long id;
 
     @Column(name="dsRelatorioAmostra", length = 200, nullable = false)
-    private String descricao;
+    private String descricaoAmostra;
 
     //relacionamentos
     //relatorioAmostra amostraAgua - muitos pra um

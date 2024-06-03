@@ -1,5 +1,7 @@
 package br.com.mapped.SeaMI.model;
 
+import br.com.mapped.SeaMI.dto.AmostraAgua.AtualizacaoAmostraAguaDto;
+import br.com.mapped.SeaMI.dto.AmostraAgua.CadastroAmostraAguaDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -63,5 +65,38 @@ public class AmostraAgua {
     //amostraAgua relatorioAmostra - um pra muitos
     @OneToMany(mappedBy = "amostraAgua")
     private List<RelatorioAmostra> relatorioAmostras;
+
+
+    public AmostraAgua(CadastroAmostraAguaDto amostraDto) {
+        dataColeta = amostraDto.dataColeta();
+        ph = amostraDto.ph();
+        poluentesQuimicos = amostraDto.poluentesQuimicos();
+        nutrientes = amostraDto.nutrientes();
+        plastico = amostraDto.plastico();
+        oxigenioDissolvido = amostraDto.oxigenioDissolvido();
+        temperatura = amostraDto.temperatura();
+        turbidez = amostraDto.turbidez();
+
+
+    }
+
+    public void atualizarInformacoesAmostraAgua(AtualizacaoAmostraAguaDto dto) {
+        if (dto.dataColeta() != null)
+            dataColeta = dto.dataColeta();
+        if (dto.ph() != null)
+            ph = dto.ph();
+        if (dto.poluentesQuimicos() != null)
+            poluentesQuimicos = dto.poluentesQuimicos();
+        if (dto.nutrientes() != null)
+            nutrientes = dto.nutrientes();
+        if (dto.plastico() != null)
+            plastico = dto.plastico();
+        if (dto.oxigenioDissolvido() != null)
+            oxigenioDissolvido = dto.oxigenioDissolvido();
+        if (dto.temperatura() != null)
+            temperatura = dto.temperatura();
+        if (dto.turbidez() != null)
+            turbidez = dto.turbidez();
+    }
 
 }

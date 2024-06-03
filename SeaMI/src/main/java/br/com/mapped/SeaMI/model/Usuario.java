@@ -1,5 +1,7 @@
 package br.com.mapped.SeaMI.model;
 
+import br.com.mapped.SeaMI.dto.Usuario.AtualizacaoUsuarioDto;
+import br.com.mapped.SeaMI.dto.Usuario.CadastroUsuarioDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -64,5 +66,45 @@ public class Usuario {
     //usuario relatorio - um pra muitos
     @OneToMany(mappedBy = "usuario")
     private List<Relatorio> relatorios;
+
+    public Usuario(CadastroUsuarioDto usuarioDto) {
+        //usuario
+        nome = usuarioDto.nome();
+        rg = usuarioDto.rg();
+        cpf = usuarioDto.cpf();
+        nacionalidade = usuarioDto.nacionalidade();
+        telefone = usuarioDto.telefone();
+        dataNascimento = usuarioDto.dataNascimento();
+        status = usuarioDto.status();
+
+        //login
+        login = new Login(usuarioDto);
+        login.setUsuario(this);
+    }
+
+    public void atualizarInformacoesUsuario(AtualizacaoUsuarioDto dto) {
+        //usuario
+        if (dto.nome() != null)
+            nome = dto.nome();
+        if (dto.rg() != null)
+            rg = dto.rg();
+        if (dto.cpf() != null)
+            cpf = dto.cpf();
+        if (dto.nacionalidade() != null)
+            nacionalidade = dto.nacionalidade();
+        if (dto.telefone() != null)
+            telefone = dto.telefone();
+        if (dto.dataNascimento() != null)
+            dataNascimento = dto.dataNascimento();
+        if (dto.status() != null)
+            status = dto.status();
+
+        //login
+        if (dto.email() != null)
+            this.login.setEmail(dto.email());
+        if (dto.senha() != null)
+            this.login.setSenha(dto.senha());
+
+    }
 
 }

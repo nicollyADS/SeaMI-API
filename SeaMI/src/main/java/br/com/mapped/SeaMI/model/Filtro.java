@@ -1,5 +1,7 @@
 package br.com.mapped.SeaMI.model;
 
+import br.com.mapped.SeaMI.dto.Filtro.AtualizacaoFiltroDto;
+import br.com.mapped.SeaMI.dto.Filtro.CadastroFiltroDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -49,4 +51,41 @@ public class Filtro {
     //filtro localizacaoFiltro - UM pra um
     @OneToOne(mappedBy = "filtro", cascade = CascadeType.ALL)
     private LocalizacaoFiltro localizacaoFiltro;
+
+    public Filtro(CadastroFiltroDto filtroDto) {
+        tipo = filtroDto.tipo();
+        descricao = filtroDto.descricao();
+        dataInstalacao = filtroDto.dataInstalacao();
+        status = filtroDto.status();
+        dataManutencao= filtroDto.dataManutencao();
+
+        //localizacao filtro
+        localizacaoFiltro = new LocalizacaoFiltro(filtroDto);
+        localizacaoFiltro.setFiltro(this);
+    }
+
+    public void atualizarInformacoesFiltro(AtualizacaoFiltroDto dto) {
+        if (dto.tipo() != null)
+            tipo = dto.tipo();
+        if (dto.descricao() != null)
+            descricao = dto.descricao();
+        if (dto.dataInstalacao() != null)
+            dataInstalacao = dto.dataInstalacao();
+        if (dto.status() != null)
+            status = dto.status();
+        if (dto.dataManutencao() != null)
+            dataManutencao = dto.dataManutencao();
+
+        //carteirinha
+        if (dto.nomeRio() != null)
+            this.localizacaoFiltro.setNomeRio(dto.nomeRio());
+        if (dto.latitude() != null)
+            this.localizacaoFiltro.setLatitude(dto.latitude());
+        if (dto.longitude() != null)
+            this.localizacaoFiltro.setLongitude(dto.longitude());
+        if (dto.profundidade() != null)
+            this.localizacaoFiltro.setProfundidade(dto.profundidade());
+
+    }
+
 }

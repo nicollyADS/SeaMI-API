@@ -1,5 +1,6 @@
 package br.com.mapped.SeaMI.model;
 
+import br.com.mapped.SeaMI.dto.Usuario.CadastroUsuarioDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,13 +28,14 @@ public class Login {
     @Column(name="dsSenha", length = 15, nullable = false)
     private String senha;
 
-    @Column(name="stLogin", length = 15, nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Status status;
-
     //relacionamentos
     //login usuario - um pra UM
     @OneToOne
     @JoinColumn(name = "cdUsuario", nullable = false)
     private Usuario usuario;
+
+    public Login(CadastroUsuarioDto loginDto) {
+        email = loginDto.email();
+        senha = loginDto.senha();
+    }
 }
