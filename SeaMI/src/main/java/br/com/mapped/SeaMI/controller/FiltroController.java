@@ -4,6 +4,7 @@ import br.com.mapped.SeaMI.dto.Filtro.AtualizacaoFiltroDto;
 import br.com.mapped.SeaMI.dto.Filtro.CadastroFiltroDto;
 import br.com.mapped.SeaMI.dto.Filtro.DetalhesFiltroDto;
 import br.com.mapped.SeaMI.model.Filtro;
+import br.com.mapped.SeaMI.repository.AmostraAguaRepository;
 import br.com.mapped.SeaMI.repository.FiltroRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class FiltroController {
 
     @Autowired
     private FiltroRepository filtroRepository;
+
+    @Autowired
+    private AmostraAguaRepository amostraAguaRepository;
 
     //GET
     @GetMapping
@@ -40,11 +44,14 @@ public class FiltroController {
     //POST
     @PostMapping
     @Transactional
-    public ResponseEntity<DetalhesFiltroDto> post(@RequestBody @Valid CadastroFiltroDto filtroDto,
-                                                  UriComponentsBuilder uriBuilder){
-        var filtro = new Filtro(filtroDto);
-        filtroRepository.save(filtro);
-        var uri = uriBuilder.path("filtros/{id}").buildAndExpand(filtro.getId()).toUri();
+    public ResponseEntity<DetalhesFiltroDto> post(@RequestBody @Valid CadastroFiltroDto dto, UriComponentsBuilder builder) {
+        var filtro = new Filtro(dto);
+        var amostraAgua = amostraAguaRepository.getReferenceById(dto.idAmostra());
+
+        filtro.setAmostraAgua(amostraAgua);
+
+        filtro = filtroRepository.save(filtro);
+        var uri = builder.path("filtros/{id}").buildAndExpand(filtro.getId()).toUri();
         return ResponseEntity.created(uri).body(new DetalhesFiltroDto(filtro));
     }
 

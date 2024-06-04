@@ -25,6 +25,10 @@ public record CadastroFiltroDto (
 
         LocalDateTime dataManutencao,
 
+        @NotNull(message = "O id da Amostra não pode ser nulo")
+        @Size(max = 10, message = "O id da Amostra deve ter no máximo 10 caracteres")
+        Long idAmostra,
+
         //LocalizacaoFiltro
         @NotBlank(message = "O Nome do rio não pode estar em branco")
         @Size(max = 100, message = "O Nome do rio deve ter no máximo 100 caracteres")

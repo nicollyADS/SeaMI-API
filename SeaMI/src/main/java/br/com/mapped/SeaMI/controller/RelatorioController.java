@@ -1,12 +1,8 @@
 package br.com.mapped.SeaMI.controller;
 
-import br.com.mapped.SeaMI.dto.AmostraAgua.AtualizacaoAmostraAguaDto;
-import br.com.mapped.SeaMI.dto.AmostraAgua.DetalhesAmostraAguaDto;
 import br.com.mapped.SeaMI.dto.Relatorio.AtualizacaoRelatorioDto;
 import br.com.mapped.SeaMI.dto.Relatorio.DetalhesRelatorioDto;
-import br.com.mapped.SeaMI.model.Relatorio;
 import br.com.mapped.SeaMI.repository.RelatorioRepository;
-import br.com.mapped.SeaMI.repository.UsuarioRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;

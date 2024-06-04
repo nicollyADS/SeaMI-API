@@ -1,5 +1,9 @@
 package br.com.mapped.SeaMI.model;
 
+import br.com.mapped.SeaMI.dto.Relatorio.AtualizacaoRelatorioDto;
+import br.com.mapped.SeaMI.dto.Relatorio.CadastroRelatorioDto;
+import br.com.mapped.SeaMI.dto.RelatorioAmostra.AtualizacaoRelatorioAmostraDto;
+import br.com.mapped.SeaMI.dto.RelatorioAmostra.CadastroRelatorioAmostraDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,6 +37,15 @@ public class RelatorioAmostra {
     @ManyToOne
     @JoinColumn(name="cdRelatorio", nullable = false)
     private Relatorio relatorio;
+
+    public RelatorioAmostra(CadastroRelatorioAmostraDto relatorioAmostraDto) {
+        descricaoAmostra = relatorioAmostraDto.descricaoAmostra();
+    }
+
+    public void atualizarInformacoesRelatorioAmostra(AtualizacaoRelatorioAmostraDto dto) {
+        if (dto.descricaoAmostra() != null)
+            descricaoAmostra = dto.descricaoAmostra();
+    }
 
 }
 
