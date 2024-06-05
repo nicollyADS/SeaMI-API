@@ -35,7 +35,6 @@ public record CadastroUsuarioDto(
 
 
         @NotNull(message = "O Status não pode ser nulo")
-        @Size(max = 15, message = "O Status deve ter no máximo 15 caracteres")
         Status status,
 
         //Login

@@ -89,17 +89,10 @@ public class FiltroController {
     @GetMapping("por-tipo")
     public ResponseEntity<Page<DetalhesFiltroDto>> getTipo(@RequestParam("tipo") String tipo,
                                                                 Pageable pageable){
-        var lista = filtroRepository.findByTipoIgnoreCase(tipo,pageable).map(DetalhesFiltroDto::new);
+        var lista = filtroRepository.findByTipoContainingIgnoreCase(tipo,pageable).map(DetalhesFiltroDto::new);
         return ResponseEntity.ok(lista);
     }
 
-    //pesquisar filtro por status
-    @GetMapping("por-status")
-    public ResponseEntity<Page<DetalhesFiltroDto>> getStatus(@RequestParam("tipo") String status,
-                                                           Pageable pageable){
-        var lista = filtroRepository.findByStatusIgnoreCase(status,pageable).map(DetalhesFiltroDto::new);
-        return ResponseEntity.ok(lista);
-    }
 
     //pesquisar localizacao por latitude e longitude
     @GetMapping("por-localizacao")

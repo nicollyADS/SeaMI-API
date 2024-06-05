@@ -10,11 +10,9 @@ public record AtualizacaoRelatorioAmostraDto(
         String descricaoAmostra,
 
         @NotNull(message = "O id da Amostra não pode ser nulo")
-        @Size(max = 10, message = "O id da Amostra deve ter no máximo 10 caracteres")
         Long idAmostra,
 
         @NotNull(message = "O id do Relatório não pode ser nulo")
-        @Size(max = 10, message = "O id do Relatório deve ter no máximo 10 caracteres")
         Long idRelatorio
 ){
 }

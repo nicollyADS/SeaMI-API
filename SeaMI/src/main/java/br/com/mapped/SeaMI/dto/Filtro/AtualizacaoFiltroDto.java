@@ -21,13 +21,11 @@ public record AtualizacaoFiltroDto (
         LocalDateTime dataInstalacao,
 
         @NotNull(message = "O Status não pode ser nulo e deve conter ATIVO ou INATIVO")
-        @Size(max = 15, message = "O Status deve ter no máximo 15 caracteres e deve conter ATIVO ou INATIVO")
         Status status,
 
         LocalDateTime dataManutencao,
 
         @NotNull(message = "O id da Amostra não pode ser nulo")
-        @Size(max = 10, message = "O id da Amostra deve ter no máximo 10 caracteres")
         Long idAmostra,
 
         //LocalizacaoFiltro

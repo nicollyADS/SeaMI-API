@@ -60,7 +60,7 @@ public class AmostraAguaController {
 
     //pesquisar amostra por data da coleta
     @GetMapping("por-data-coleta")
-    public ResponseEntity<Page<DetalhesAmostraAguaDto>> getData(@RequestParam("data") LocalDate dataColeta,
+    public ResponseEntity<Page<DetalhesAmostraAguaDto>> getData(@RequestParam("data") LocalDateTime dataColeta,
                                                        Pageable pageable){
         var lista = amostraAguaRepository.findByDataColeta(dataColeta,pageable).map(DetalhesAmostraAguaDto::new);
         return ResponseEntity.ok(lista);
@@ -68,8 +68,8 @@ public class AmostraAguaController {
 
     //pesquisar amostra por data da coleta entre duas datas
     @GetMapping("por-data")
-    public ResponseEntity<Page<DetalhesAmostraAguaDto>> getBetween(@RequestParam("data-inicio") LocalDate dataInicio,
-                                                        @RequestParam("data-fim") LocalDate dataFim,
+    public ResponseEntity<Page<DetalhesAmostraAguaDto>> getBetween(@RequestParam("data-inicio") LocalDateTime dataInicio,
+                                                        @RequestParam("data-fim") LocalDateTime dataFim,
                                                         Pageable pageable){
         var lista = amostraAguaRepository.findByDataColetaBetween(dataInicio, dataFim, pageable).map(DetalhesAmostraAguaDto::new);
         return ResponseEntity.ok(lista);
@@ -77,7 +77,7 @@ public class AmostraAguaController {
 
     //pesquisar amostra por data da coleta depois de uma data especifica
     @GetMapping("por-data-seguinte")
-    public ResponseEntity<Page<DetalhesAmostraAguaDto>> getAfter(@RequestParam("data-seguinte") LocalDate dataColeta,
+    public ResponseEntity<Page<DetalhesAmostraAguaDto>> getAfter(@RequestParam("data-seguinte") LocalDateTime dataColeta,
                                                                 Pageable pageable){
         var lista = amostraAguaRepository.findByDataColetaAfter(dataColeta,pageable).map(DetalhesAmostraAguaDto::new);
         return ResponseEntity.ok(lista);
