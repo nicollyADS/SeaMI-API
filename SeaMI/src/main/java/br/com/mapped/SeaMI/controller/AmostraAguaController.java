@@ -5,11 +5,14 @@ import br.com.mapped.SeaMI.dto.AmostraAgua.DetalhesAmostraAguaDto;
 import br.com.mapped.SeaMI.repository.AmostraAguaRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -52,6 +55,34 @@ public class AmostraAguaController {
         amostra.atualizarInformacoesAmostraAgua(dto);
         return ResponseEntity.ok(new DetalhesAmostraAguaDto(amostra));
     }
+
+    //PESQUISAS
+
+    //pesquisar amostra por data da coleta
+    @GetMapping("por-data-coleta")
+    public ResponseEntity<Page<DetalhesAmostraAguaDto>> getData(@RequestParam("data") LocalDate dataColeta,
+                                                       Pageable pageable){
+        var lista = amostraAguaRepository.findByDataColeta(dataColeta,pageable).map(DetalhesAmostraAguaDto::new);
+        return ResponseEntity.ok(lista);
+    }
+
+    //pesquisar amostra por data da coleta entre duas datas
+    @GetMapping("por-data")
+    public ResponseEntity<Page<DetalhesAmostraAguaDto>> getBetween(@RequestParam("data-inicio") LocalDate dataInicio,
+                                                        @RequestParam("data-fim") LocalDate dataFim,
+                                                        Pageable pageable){
+        var lista = amostraAguaRepository.findByDataColetaBetween(dataInicio, dataFim, pageable).map(DetalhesAmostraAguaDto::new);
+        return ResponseEntity.ok(lista);
+    }
+
+    //pesquisar amostra por data da coleta depois de uma data especifica
+    @GetMapping("por-data-seguinte")
+    public ResponseEntity<Page<DetalhesAmostraAguaDto>> getAfter(@RequestParam("data-seguinte") LocalDate dataColeta,
+                                                                Pageable pageable){
+        var lista = amostraAguaRepository.findByDataColetaAfter(dataColeta,pageable).map(DetalhesAmostraAguaDto::new);
+        return ResponseEntity.ok(lista);
+    }
+
 
 
 }

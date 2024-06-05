@@ -11,16 +11,19 @@ import br.com.mapped.SeaMI.model.AmostraAgua;
 import br.com.mapped.SeaMI.model.Relatorio;
 import br.com.mapped.SeaMI.model.Usuario;
 import br.com.mapped.SeaMI.repository.AmostraAguaRepository;
+import br.com.mapped.SeaMI.repository.LoginRepository;
 import br.com.mapped.SeaMI.repository.RelatorioRepository;
 import br.com.mapped.SeaMI.repository.UsuarioRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -35,6 +38,9 @@ public class UsuarioController {
 
     @Autowired
     private RelatorioRepository relatorioRepository;
+
+    @Autowired
+    private LoginRepository loginRepository;
 
 
     //GET
@@ -111,9 +117,22 @@ public class UsuarioController {
 
 
 
+    //PESQUISAS
+    //pesquisar usuario por nome
+    @GetMapping("por-nome")
+    public ResponseEntity<Page<DetalhesUsuarioDto>> getNome(@RequestParam("nome") String nome,
+                                                            Pageable pageable){
+        var lista = usuarioRepository.findByNomeContainingIgnoreCase(nome,pageable).map(DetalhesUsuarioDto::new);
+        return ResponseEntity.ok(lista);
+    }
 
-
-
+    //pesquisar usuario por cpf
+    @GetMapping("por-cpf")
+    public ResponseEntity<Page<DetalhesUsuarioDto>> getCpf(@RequestParam("cpf") String cpf,
+                                                        Pageable pageable){
+        var lista = usuarioRepository.findByCpfEquals(cpf,pageable).map(DetalhesUsuarioDto::new);
+        return ResponseEntity.ok(lista);
+    }
 
 
 }
