@@ -1,7 +1,5 @@
 package br.com.mapped.SeaMI.model;
 
-import br.com.mapped.SeaMI.dto.AmostraAgua.AtualizacaoAmostraAguaDto;
-import br.com.mapped.SeaMI.dto.AmostraAgua.CadastroAmostraAguaDto;
 import br.com.mapped.SeaMI.dto.Relatorio.AtualizacaoRelatorioDto;
 import br.com.mapped.SeaMI.dto.Relatorio.CadastroRelatorioDto;
 import jakarta.persistence.*;
@@ -11,7 +9,6 @@ import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 

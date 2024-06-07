@@ -1,7 +1,5 @@
 package br.com.mapped.SeaMI.model;
 
-import br.com.mapped.SeaMI.dto.Relatorio.AtualizacaoRelatorioDto;
-import br.com.mapped.SeaMI.dto.Relatorio.CadastroRelatorioDto;
 import br.com.mapped.SeaMI.dto.RelatorioAmostra.AtualizacaoRelatorioAmostraDto;
 import br.com.mapped.SeaMI.dto.RelatorioAmostra.CadastroRelatorioAmostraDto;
 import jakarta.persistence.*;

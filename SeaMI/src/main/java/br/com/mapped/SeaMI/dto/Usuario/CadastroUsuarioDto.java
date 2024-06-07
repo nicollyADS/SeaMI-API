@@ -7,7 +7,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public record CadastroUsuarioDto(
         @NotBlank(message = "O Nome do usuário não pode estar em branco")
